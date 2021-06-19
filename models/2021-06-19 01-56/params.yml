@@ -1,0 +1,9 @@
+- name: discretizer
+  params:
+    bins_per_column:
+      bmi: 2
+    strategy: kmeans
+- name: standard-scaler
+  params: {}
+- name: bagging
+  params: {}

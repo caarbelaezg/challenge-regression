@@ -40,6 +40,7 @@ def get_estimator_mapping():
         "linear-regressor": LinearRegression,
         "logistic-regressor": LogisticRegression,
         "categorical-encoder": CategoricalEncoder,
+        "one-hot-encoder": OneHotEncoder,
         "standard-scaler": StandardScaler,
         "bagging": BaggingRegressor,
         "discretizer": Discretizer,

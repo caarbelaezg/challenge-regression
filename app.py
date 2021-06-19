@@ -16,9 +16,9 @@ import pandas as pd
 from sklearn.base import BaseEstimator
 from sklearn.model_selection import GridSearchCV
 
-from regression.data import Data as data
-from regression.model import Model as model
-from regression.metrics import Metrics as metrics
+import data
+import model
+import metrics
 
 app = typer.Typer()
 

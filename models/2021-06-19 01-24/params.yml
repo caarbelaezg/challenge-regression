@@ -1,0 +1,15 @@
+- name: average-charges-extractor
+  params: {}
+- name: discretizer
+  params:
+    bins_per_column:
+      bmi: 2
+    strategy: kmeans
+- name: categorical-encoder
+  params:
+    force_dense_array: true
+    one_hot: true
+- name: standard-scaler
+  params: {}
+- name: bagging
+  params: {}
