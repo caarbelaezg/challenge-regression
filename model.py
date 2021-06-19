@@ -70,8 +70,7 @@ class CategoricalEncoder(BaseEstimator, TransformerMixin):
                         categories=self.categories,
                     ),
                     self.categorical_column_names,
-                ),
-                ("pass-numeric", "passthrough", data.get_numeric_column_names()),
+                )
             ],
             remainder="drop",
         )
