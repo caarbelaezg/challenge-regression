@@ -42,7 +42,7 @@ def get_estimator_mapping():
         "categorical-encoder": CategoricalEncoder,
         "one-hot-encoder": OneHotEncoder,
         "standard-scaler": StandardScaler,
-        "bagging": BaggingRegressor,
+        "bagging": BaggRegressor,
         "discretizer": Discretizer,
     }
 class CategoricalEncoder(BaseEstimator, TransformerMixin):
@@ -154,3 +154,12 @@ class Discretizer(BaseEstimator, TransformerMixin):
            cosa , columns=self.new_column_order_
         )
         return X
+
+class BaggRegressor:
+
+    def fit(self, X, y):
+        self._model = BaggingRegressor(base_estimator=LinearRegression(),random_state=0).fit(X,y)
+        return self
+
+    def predict(self,X):
+        return self._model.predict(X)
