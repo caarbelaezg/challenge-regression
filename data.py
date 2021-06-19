@@ -19,17 +19,17 @@ SplitName = te.Literal["train", "test"]
 
 def get_dataset(reader: DatasetReader, splits: t.Iterable[SplitName]):
     df = reader()
-    df = pd.get_dummies(df, columns=['sex','children','smoker','region'])
-
     y = df["y"]
     X = df.drop(columns=["y"])
-    # X = X.astype(
-    #     {k: str for k in get_categorical_variables_values_mapping().keys()})
+    X = X.astype(
+        {k: str for k in get_categorical_variables_values_mapping().keys()})
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.3, random_state=1
     )
     split_mapping = {"train": (X_train, y_train), "test": (X_test, y_test)}
     return {k: split_mapping[k] for k in splits}
+
+
 
 def get_categorical_column_names() -> t.List[str]:
     return "region".split(",")
