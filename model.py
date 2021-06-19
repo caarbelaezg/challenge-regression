@@ -79,7 +79,8 @@ class CategoricalEncoder(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
-        return self._column_transformer.transform(X)
+        X = self._column_transformer.transform(X)
+        return X
 
 
 class AverageChargesPerRegionRegressor(BaseEstimator, RegressorMixin):
@@ -133,20 +134,15 @@ class Discretizer(BaseEstimator, TransformerMixin):
         self.n_features_in_ = X.shape[1]
         self.original_column_order_ = X.columns.tolist()
         self.columns_, n_bins = zip(*self.bins_per_column.items())
-        self.new_column_order_ = self.columns_ + tuple(
+        self.new_column_order_ =  self.columns_ + tuple(
             name
             for name in self.original_column_order_
             if name not in self.bins_per_column
         )
         self._column_transformer = ColumnTransformer(
-            transformers=[
-                (
-                    "encoder",
-                    KBinsDiscretizer(
-                        n_bins=n_bins, encode="ordinal", strategy=self.strategy
-                    ),
-                    self.columns_,
-                ),
+            transformers=
+            [
+                ("encoder", KBinsDiscretizer(n_bins=n_bins, encode="ordinal", strategy=self.strategy), self.columns_),
             ],
             remainder="passthrough",
         )
@@ -154,7 +150,8 @@ class Discretizer(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, X):
+        cosa = self._column_transformer.transform(X)
         X = pd.DataFrame(
-            self._column_transformer.transform(X), columns=self.new_column_order_
+           cosa , columns=self.new_column_order_
         )
         return X

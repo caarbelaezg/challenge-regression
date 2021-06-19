@@ -1,10 +1,9 @@
 estimator:
-  - name: average-charges-extractor
-    params: {}
   - name: discretizer
     params:
       bins_per_column:
-        bmi: 2
+        bmi: 4
+        age: 5
       strategy: kmeans
   - name: categorical-encoder
     params:
